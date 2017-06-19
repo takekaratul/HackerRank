@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sparsearray;
+
+import java.util.HashMap;
+
+/**
+ *
+ * @author Atul
+ */
+public class SparseArray {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        long lStartTime = System.nanoTime();
+        HashMap<String,Integer> freq = new HashMap<>();
+        int firstArraySize = Integer.parseInt(args[0]);
+        for(int i = 0 ; i<firstArraySize ; i++)
+            {
+                String word = args[i+1];
+                
+                Integer count = freq.get(word);
+                if (count == null) 
+                    freq.put(word, 1);
+                       
+                else 
+                    freq.put(word, count + 1);
+
+            }
+        
+        int secondArraySize = Integer.parseInt(args[firstArraySize+1]);
+        for(int i = 0 ; i<secondArraySize ; i++)
+            {
+                    String check =args[firstArraySize+2+i];
+                    Integer count = freq.get(check);
+                    System.out.println(count == null ? 0 : count);
+            }
+        
+        long lEndTime = System.nanoTime();
+        long output = lEndTime - lStartTime;
+        System.out.println("Elapsed time in milliseconds: " + output);
+    }
+    
+}
