@@ -1,0 +1,49 @@
+public class PairThatSumsToXinArray {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        long lStartTime = System.nanoTime();
+        int arraySize = Integer.parseInt(args[0]);
+        int arr[]= new int[arraySize];
+        for(int i = 0 ; i<arraySize ; i++)
+            {
+               arr[i] = Integer.parseInt(args[i+1]);
+            }
+        Arrays.sort(arr);                                            //sorting with nlogn using Dual-Pivot Quicksort sorting algorithm
+        int sum = Integer.parseInt(args[arraySize+1]);
+        boolean found = false;
+        int left = 0;
+        int right = arraySize-1;
+        while (left<right)
+        {
+            System.out.println(arr[left]+" and "+arr[right] + " for "+sum);
+            if(arr[left]+arr[right]<sum)                                      //case with most probability are written first
+            {
+                left++;
+            }
+            else if (arr[left]+arr[right]>sum)
+            {
+                right--;
+            }
+            
+            else if(arr[left]+arr[right]==sum)
+            {
+                System.out.println("Sumation pair "+arr[left]+", "+arr[right]);        //
+                left++;
+                right--;
+                found=true;                                    //did not return to look for more no of pairs
+            }
+        }
+        if(!found)
+        {
+            System.out.println("No pair that sums to "+sum);
+        }
+        long lEndTime = System.nanoTime();
+        long output = lEndTime - lStartTime;
+        System.out.println("Elapsed time in milliseconds: " + output);
+    }
+    
+}
