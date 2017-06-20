@@ -19,7 +19,6 @@ public class PairThatSumsToXinArray {
         int right = arraySize-1;
         while (left<right)
         {
-            System.out.println(arr[left]+" and "+arr[right] + " for "+sum);
             if(arr[left]+arr[right]<sum)                                      //case with most probability are written first
             {
                 left++;
