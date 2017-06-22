@@ -1,0 +1,43 @@
+public class MajorityBasic {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        long lStartTime = System.nanoTime();
+        HashMap<Integer, Integer> freq = new HashMap<>();
+        int arraySize = Integer.parseInt(args[0]);
+        int arr[] = new int[arraySize];
+        for (int i = 0; i < arraySize; i++) {
+            arr[i] = Integer.parseInt(args[i + 1]);
+        }
+
+        
+        boolean found = false;
+        for (int i = 0; i < arraySize; i++) {               
+            Integer arrayElement = arr[i];
+            Integer count = freq.get(arrayElement);
+            if (count == null) {
+                freq.put(arrayElement, 1);                //if first occurence of element
+            } else {
+                freq.put(arrayElement, count+1);          //if already occurred and occurence is greater than n/2 break
+                if (count+1 > arraySize / 2) {
+                    found=true;
+                    System.out.println(arrayElement);
+                    break;
+                }
+            }
+
+        }
+        
+        if(!found)
+        {
+           System.out.println("No Major element");
+        }
+        long lEndTime = System.nanoTime();
+        long output = lEndTime - lStartTime;
+        System.out.println("Elapsed time in milliseconds: " + output);
+    }
+
+}
