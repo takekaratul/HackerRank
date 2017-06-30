@@ -1,0 +1,46 @@
+public class FindElementinSortedAndRotatedElement {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static int findIndex(int start,int end, int arr[],int key)
+    {
+        if(start<=end)
+        {
+            int mid = (start+end)/2;
+            if(arr[mid]==key)
+                return mid;
+            else if(arr[mid]<=arr[end]) //right array is sorted
+            {
+                if(arr[mid+1]<=key && arr[end]>=key)
+                {
+                    return findIndex(mid+1, end, arr, key);
+                }
+                else
+                {
+                    return findIndex(start, mid-1, arr, key);
+                }
+            }
+            else // left array is sorted
+            {
+                if(arr[start]<=key && arr[mid]>=key)
+                {
+                    return findIndex(start, mid-1, arr, key);
+                }
+                else
+                {
+                   return findIndex(mid+1, end, arr, key);
+                }
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+        int[] arr= new int[]{6,7,8,9,1,2,3,4,5};
+        int index = findIndex(0,arr.length-1,arr,1);
+        System.out.println(index);
+    }
+    
+}
